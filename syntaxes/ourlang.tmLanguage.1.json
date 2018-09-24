@@ -1,0 +1,89 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "OurLang",
+	"patterns": [
+		{
+			"include": "#function-name"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#string"
+		},
+		{
+			"include": "#int"
+		},
+		{
+			"include": "#var-type"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.ourlang",
+					"match": "\\b(if|else|for|break|return|var)\\b"
+				}
+			]
+		},
+		"string": {
+			"name": "string.quoted.double.ourlang",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.ourlang",
+					"match": "\\\\."
+				}
+			]
+		},
+		"int": {
+			"name": "constant.numeric.ourlang",
+			"patterns": [
+				{
+					"name": "constant.numeric.ourlang",
+					"match": "\\b[0-9].*\\b"
+				}
+			]
+		},
+		"function-name": {
+			"name": "keyword-function-name",
+			"begin": "\\b(function)\\s*",
+			"end": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "function-keyword"
+				}
+			},
+			"patterns": [
+				{
+					"name": "keyword.function",
+					"match": "\\b(function)\\b"
+				},
+				{
+					"name": "entity.name.function.ourlang",
+					"match": "[_$[:alnum:]]*"
+				}
+			]
+		},
+		"function-keyword": {
+			"patterns": [
+				{
+					"name": "keyword.function.ourlang",
+					"match": "\\bfunction\\b"
+				}
+			]
+		},
+		"var-type": {
+			"begin": "\\:\\s*",
+			"patterns": [
+				{
+					"name": "entity.name.type",
+					"match": "[_$[:alnum:]]*"
+				}
+			]
+		}
+	},
+	"scopeName": "source.ourlang"
+}

@@ -1,0 +1,132 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "OurLang",
+	"patterns": [
+		{
+			"include": "#function-name"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#string"
+		},
+		{
+			"include": "#int"
+		},
+		{
+			"include": "#var-type"
+		},
+		{
+			"include": "#function-call"
+		},
+		{
+			"include": "#single-line-comment"
+		},
+		{
+			"include": "#multi-line-comment"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.ourlang",
+					"match": "\\b(if|else|for|break|return|function|var)\\b"
+				}
+			]
+		},
+		"string": {
+			"name": "string.quoted.double.ourlang",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.ourlang",
+					"match": "\\\\."
+				}
+			]
+		},
+		"int": {
+			"name": "constant.numeric.ourlang",
+			"patterns": [
+				{
+					"name": "constant.numeric.ourlang",
+					"match": "\\b[0-9].*\\b"
+				}
+			]
+		},
+		"function-name": {
+			"name": "keyword-function",
+			"match": "(function)\\s*(\\w+)\\s*\\((.*\\))",
+			"captures": {
+				"1": {
+					"name": "keyword.function",
+					"match": "\\bfunction\\b"
+				},
+				"2": {
+					"begin": "function\\s*",
+					"end": "\\(",
+					"name": "entity.name.function.ourlang",
+					"match": "\\\\."
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "\\b(\\w+)\\s+(\\w+)\\b",
+							"captures": {
+								"1": {
+									"name": "entity.name.argtype"
+								}
+							}
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"name": "entity.name.function.ourlang",
+					"match": "[_$[:alnum:]]*"
+				}
+			]
+		},
+		"var-type": {
+			"begin": "\\:\\s*",
+			"end": "\\s",
+			"patterns": [
+				{
+					"name": "entity.name.type",
+					"match": "[_$[:alnum:]]*"
+				}
+			]
+		},
+		"function-call": {
+			"begin": "(\\w+)\\s*\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.function-call"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#multi-line-comment"
+				},
+				{
+					"include": "#single-line-comment"
+				}
+			]
+		},
+		"single-line-comment": {
+			"begin": "\\/\\/",
+			"end": "\n",
+			"name": "comment.singleline"
+		},
+		"multi-line-comment": {
+			"begin": "\\/\\*",
+			"end": "\\*\\/",
+			"name": "comment.multiline"
+		}
+	},
+	"scopeName": "source.ourlang"
+}

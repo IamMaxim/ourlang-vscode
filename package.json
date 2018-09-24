@@ -1,0 +1,34 @@
+{
+    "name": "ourlang",
+    "displayName": "OurLang",
+    "description": "This extension adds support of OurLang into Visual Studio Code",
+    "version": "0.0.1",
+    "publisher": "IamMaxim",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Themes"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "ourlang",
+            "aliases": ["OurLang", "ourlang"],
+            "extensions": [".ol"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "ourlang",
+            "scopeName": "source.ourlang",
+            "path": "./syntaxes/ourlang.tmLanguage.json"
+        }],
+        "themes": [
+            {
+                "label": "OurLang",
+                "uiTheme": "vs-dark",
+                "path": "./themes/OurLang-color-theme.json"
+            }
+        ]
+    }
+}
